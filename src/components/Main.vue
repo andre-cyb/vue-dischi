@@ -1,13 +1,16 @@
 <template>
-  <div></div>
+  <div>
+    <div class="main"></div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "Main",
   props: {},
 };
 </script>
 
 <style scoped lang="scss">
+@import "@/styles/app";
 </style>
