@@ -14,5 +14,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/app";
+@import "~bootstrap/scss/bootstrap";
+@import "@/styles/variables";
+
+.header {
+  background-color: $primary-color;
+  padding: 9px;
+}
 </style>
