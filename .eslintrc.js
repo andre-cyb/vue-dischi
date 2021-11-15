@@ -3,6 +3,8 @@ module.exports = {
   env: {
     node: true
   },
+
+  ignorePatterns: ["dist/*"],
   'extends': [
     'plugin:vue/essential',
     'eslint:recommended'
@@ -14,4 +16,4 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   }
-}
+};
