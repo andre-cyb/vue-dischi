@@ -1,9 +1,17 @@
 <template>
   <div>
     <div class="main">
-      <div class="container">
-        <div class="row">
-          <SongCard />
+      <div class="my_container">
+        <div class="row justify-content-center">
+          <SongCard
+            v-for="(song, i) in brani"
+            :key="i"
+            :img="song.poster"
+            :autore="song.author"
+            :titolo="song.title"
+            :anno="song.year"
+            :genere="song.genre"
+          ></SongCard>
         </div>
       </div>
     </div>
@@ -12,10 +20,24 @@
 
 <script>
 import SongCard from "./SongCard.vue";
+import axios from "axios";
+import "@fontsource/montserrat";
 export default {
   components: { SongCard },
   name: "Main",
-  props: {},
+  data() {
+    return {
+      brani: [],
+    };
+  },
+  methods: {},
+  mounted() {
+    axios
+      .get("https://flynn.boolean.careers/exercises/api/array/music")
+      .then((songObj) => {
+        this.brani = songObj.data.response;
+      });
+  },
 };
 </script>
 
@@ -25,6 +47,11 @@ export default {
 
 .main {
   background-color: $secondary-color;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 66px);
+  .my_container {
+    padding-top: 80px;
+    max-width: 1180px;
+    margin: auto;
+  }
 }
 </style>

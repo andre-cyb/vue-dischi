@@ -19,6 +19,6 @@ export default {
 
 .header {
   background-color: $primary-color;
-  padding: 9px;
+  padding: 12px;
 }
 </style>
