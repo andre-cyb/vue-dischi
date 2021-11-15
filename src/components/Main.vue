@@ -46,10 +46,10 @@ export default {
 @import "@/styles/variables.scss";
 
 .main {
+  display: flex;
   background-color: $secondary-color;
   height: calc(100vh - 66px);
   .my_container {
-    padding-top: 80px;
     max-width: 1180px;
     margin: auto;
   }
