@@ -2,9 +2,14 @@
   <div>
     <div class="main">
       <div class="my_container">
+        <SelectGenre
+          :genere="genre"
+          :arraygeneri="brani"
+          @onchange="takeValue"
+        ></SelectGenre>
         <div class="row justify-content-center">
           <SongCard
-            v-for="(song, i) in brani"
+            v-for="(song, i) in showFilteredData"
             :key="i"
             :img="song.poster"
             :autore="song.author"
@@ -12,6 +17,7 @@
             :anno="song.year"
             :genere="song.genre"
           ></SongCard>
+          <!-- {{ genreFilter() }} -->
         </div>
       </div>
     </div>
@@ -22,21 +28,49 @@
 import SongCard from "./SongCard.vue";
 import axios from "axios";
 import "@fontsource/montserrat";
+import SelectGenre from "./SelectGenre.vue";
+
 export default {
-  components: { SongCard },
+  components: { SongCard, SelectGenre },
   name: "Main",
   data() {
     return {
       brani: [],
+      selectedOption: "",
     };
   },
-  methods: {},
+  methods: {
+    onClickFilter() {
+      return console.log(this.value);
+    },
+    arraygeneri() {
+      let arraygenre = [];
+      this.brani.forEach((element) => {
+        let generi = element.genre;
+
+        if (arraygenre.includes(generi) === undefined) {
+          arraygenre.push(generi);
+        }
+      });
+      console.log(arraygenre);
+      return arraygenre;
+    },
+    takeValue(value) {
+      this.selectedOption = value;
+    },
+  },
+  computed: {},
   mounted() {
     axios
       .get("https://flynn.boolean.careers/exercises/api/array/music")
       .then((songObj) => {
         this.brani = songObj.data.response;
       });
+  },
+  showFilteredData() {
+    if (this.brani.genre.includes(this.selectedOption)) {
+      return;
+    }
   },
 };
 </script>
